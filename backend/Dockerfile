@@ -30,5 +30,10 @@ ENV FLASK_ENV=production
 # Install Gunicorn
 RUN pip install gunicorn
 
+# Set Turso database credentials as environment variables
+# These will be overridden by the deployment platform's environment variables
+ENV TURSO_DB_URL=""
+ENV TURSO_AUTH_TOKEN=""
+
 # Run the application
 CMD ["sh", "-c", "gunicorn --workers 3 --threads 4 --bind 0.0.0.0:$PORT app:app"]
